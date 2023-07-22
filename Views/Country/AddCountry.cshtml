@@ -1,0 +1,92 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "AddContinent Page";
+    List<SelectListItem> l1 = new List<SelectListItem>();
+
+    foreach (string c in Model)
+        l1.Add(new SelectListItem() { Text = c });
+
+}
+
+@if (TempData["AlertFailedMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Failed ! </strong>@TempData["AlertFailedMessage"]
+    </div>
+}
+<h2>Complete the fields</h2>
+
+
+@using (Html.BeginForm("FinishCountry", "Country"))
+{
+    <label for="Code">Code:</label>
+    <br>
+    <input type="text" name="Code" /><a> (mandatory; max. 3 characters)</a>
+    <br>
+    <label for="Name">Name:</label>
+    <br>
+    <input type="text" name="Name" /><a> (mandatory)</a>
+    <br>
+    @*<label for="Continent">Continent:</label>
+        <br>
+        <input type="text" name="Continent" />
+        <br>*@
+    <label for="Region">Region:</label>
+    <br>
+    <input type="text" name="Region" /><a> (mandatory)</a>
+    <br>
+    <label for="SurfaceArea">SurfaceArea:</label>
+    <br>
+    <input type="text" name="SurfaceArea" /><a> (mandatory)</a>
+    <br>
+    <label for="IdepYear">IdepYear:</label>
+    <br>
+    <input type="text" name="IdepYear" />
+    <br>
+    <label for="Population">Population:</label>
+    <br>
+    <input type="text" name="Population" /><a> (mandatory)</a>
+    <br>
+    <label for="LifeExpectency">LifeExpectency:</label>
+    <br>
+    <input type="text" name="LifeExpectency" /><a> (under 100)</a>
+    <br>
+    <label for="GNP">GNP:</label>
+    <br>
+    <input type="text" name="GNP" />
+    <br>
+    <label for="GNPOId">GNPOId:</label>
+    <br>
+    <input type="text" name="GNPOId" />
+    <br>
+    <label for="LocalName">LocalName:</label>
+    <br>
+    <input type="text" name="LocalName" /><a> (mandatory)</a>
+    <br>
+    <label for="GovernmentForm">GovernmentForm:</label>
+    <br>
+    <input type="text" name="GovernmentForm" /><a> (mandatory)</a>
+    <br>
+    <label for="HeadOfState">HeadOfState:</label>
+    <br>
+    <input type="text" name="HeadOfState" />
+    <br>
+    <label for="Capital">Capital:</label>
+    <br>
+    <input type="text" name="Capital" />
+    <br>
+    <label for="Code2">Code2:</label>
+    <br>
+    <input type="text" name="Code2" /><a> (mandatory, max. 2 characters)</a>
+    <br>
+    <label for="ContinentCode">ContinentCode:</label>
+    <br>
+    @*    <input type="text" name="ContinentCode" />
+        <br>*@
+    @Html.DropDownList("Continents", l1, "");<a> (mandatory)</a>
+    <br>
+    <br />
+    <input type="submit" value="ADD" class = "buttonAdd">
+}
+
+

@@ -1,0 +1,132 @@
+﻿@model List<Country>
+@{
+    ViewData["Title"] = "Country Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4"></h1>
+</div>
+
+@if (TempData["AlertSuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success ! </strong>@TempData["AlertSuccessMessage"]
+    </div>
+}
+@if (TempData["AlertFailedMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Failed ! </strong>@TempData["AlertFailedMessage"]
+    </div>
+}
+<br />
+
+<h2>Countries</h2>
+@Html.ActionLink("Add a country", "AddCountry", "Country", null, new { @class = "buttonAdd" })
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Continent</th>
+            <th>Region</th>
+            <th>Surface area</th>
+            <th>Independence year</th>
+            <th>Population</th>
+            <th>Life expectency</th>
+            <th>GNP</th>
+            <th>GNPO Id</th>
+            <th>Local name</th>
+            <th>Government form</th>
+            <th>Head of state</th>
+            <th>Capital</th>
+            <th>Code2</th>
+            <th>Continent code</th>
+            <th>Country cities</th>
+            <th>Edit</th>
+            <th>Delete from list</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Code</td>
+            <td>@item.Name</td>
+            <td>@item.Continent</td>
+            <td>@item.Region</td>
+            <td>@item.SurfaceArea</td>
+            <td>@item.IndepYear</td>
+            <td>@item.Population</td>
+            <td>@item.LifeExpectency</td>
+            <td>@item.GNP</td>
+            <td>@item.GNPOId</td>
+            <td>@item.LocalName</td>
+            <td>@item.GovernmentForm</td>
+            <td>@item.HeadOfState</td>
+            <td>@item.Capital</td>
+            <td>@item.Code2</td>
+            <td>@item.ContinentCode</td>
+            @*            <td><a asp-area="" asp-controller="Home" asp-action="DisplayCitiesByCountry">See cities</a></td>
+            *@
+            <td>
+                @Html.ActionLink(
+                    "Cities",
+                    "DisplayCitiesByCountry",
+                    "Home",
+                    new
+                    {
+                        country = item.Code
+                    },
+                    new { @class = "button2" }
+                  )
+            </td>
+
+            <td>
+                @Html.ActionLink(
+                    "Update",
+                    "EditCountry",
+                    "Country",
+                    new
+                    {
+                        Code=item.Code,
+                        Name=item.Name,
+                        Continent=item.Continent,
+                        Region=item.Region,
+                        SurfaceArea=item.SurfaceArea,
+                        IndepYear=item.IndepYear,
+                        Population=item.Population,
+                        LifeExpectancy=item.LifeExpectency,
+                        GNP=item.GNP,
+                        GNPOId=item.GNPOId,
+                        LocalName=item.LocalName,
+                        GovernmentForm=item.GovernmentForm,
+                        HeadOfState=item.HeadOfState,
+                        Capital=item.Capital,
+                        Code2=item.Code2,
+                        ContinentCode=item.ContinentCode
+                    },
+                    new { @class = "buttonUpdate" }
+                  )
+            </td>
+
+            <td>
+                @Html.ActionLink(
+                    "Delete",
+                    "DeleteCountry",
+                    "Country",
+                    new
+                    {
+                        country = item.Code
+                    },
+                    new { @class = "buttonDelete" }
+                  )
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,83 @@
+﻿@model List<City>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<h2>Cities</h2>
+@if (TempData["AlertSuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success ! </strong>@TempData["AlertSuccessMessage"]
+    </div>
+}
+@if (TempData["AlertFailedMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Failed ! </strong>@TempData["AlertFailedMessage"]
+    </div>
+}
+<br />
+
+
+@Html.ActionLink("Add a city", "AddCity", "Home", null, new { @class="buttonAdd"})
+
+@*<a href="/Home/AddCity?" class="button2">ADD A CITY</a>
+*@
+<br />
+<br />
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country Code</th>
+            <th>District</th>
+            <th>Population</th>
+            <th>Edit</th>
+            <th>Delete from list</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.CountryCode</td>
+                <td>@item.District</td>
+                <td>@item.Population</td>
+                <td>
+                    @Html.ActionLink(
+                        "Update",
+                        "EditCity",
+                        "Home",
+                        new
+                        {
+                            Id = item.Id,
+                            Name = item.Name,
+                            Population = item.Population,
+                            District = item.District,
+                            CountryCode = item.CountryCode
+                        },
+                        new { @class = "buttonUpdate"}
+                      )
+                </td>
+                <td>
+                    @Html.ActionLink(
+                        "Delete",
+                        "DeleteCity",
+                        "Home",
+                        new
+                        {
+                            Id = item.Id    //item trimis ca parametru
+                        },
+                        new { @class = "buttonDelete" }
+                      )
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@model EditHelper<string, City>
+@{
+    ViewData["Title"] = "EditCity Page";
+    List<SelectListItem> l1 = new List<SelectListItem>();
+
+    foreach (string c in Model.fkList)
+        l1.Add(new SelectListItem() { Text = c });
+
+}
+<h2>Complete the fields</h2>
+
+
+@using (Html.BeginForm("FinishUpdateCity", "Home"))
+{
+    <br>
+    <label for="Id">Id:</label>
+    <input type="text" name="Id" value="@Model.editableObj.Id" readonly /><a> (read-only)</a>
+    <br>
+    <label for="Name">Name:</label>
+    <br>
+    <input type="text" name="Name" value="@Model.editableObj.Name" /><a> (mandatory)</a>
+    <br>
+    <label for="CountryCode">CountryCode:</label>
+    <br>
+    @Html.DropDownList("CountryCode", l1, @Model.editableObj.CountryCode);<a> (mandatory)</a>
+    <br>
+    <label for="District">District:</label>
+    <br>
+    <input type="text" name="District" value="@Model.editableObj.District" /><a> (mandatory)</a>
+    <br>
+    <label for="Population">Population:</label>
+    <br>
+    <input type="text" name="Population" value="@Model.editableObj.Population" /><a> (mandatory)</a>
+    <br>
+    <br />
+    <input type="submit" value="UPDATE" class = "buttonAdd">
+}

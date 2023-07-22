@@ -1,0 +1,83 @@
+﻿@model List<Continent>
+@{
+    ViewData["Title"] = "Continent Page";
+}
+<h2>Continents</h2>
+
+@if (TempData["AlertSuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Success ! </strong>@TempData["AlertSuccessMessage"]
+    </div>
+}
+@if (TempData["AlertFailedMessage"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Failed ! </strong>@TempData["AlertFailedMessage"]
+    </div>
+}
+<br />
+@Html.ActionLink("Add a continent", "AddContinent", "Continent", null, new { @class = "buttonAdd"})
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Continent countries</th>
+            <th>Edit</th>
+            <th>Delete from list</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Code</td>
+            <td>@item.Name</td>
+            <td>
+                @Html.ActionLink(
+                    "See countries in this continent",
+                    "DisplayCountriesByContinent",
+                    "Country",
+                    new
+                    {
+                        continentCode = item.Code
+                    },                  
+                    new { @class = "button2"}
+                  )
+            </td>
+
+            <td>
+                @Html.ActionLink(
+                    "Update",
+                    "EditContinent",
+                    "Continent",
+                    new
+                    {
+                        code=item.Code,
+                        name=item.Name               
+                    },
+                    new { @class = "buttonUpdate" }
+                  )
+            </td>
+
+            <td>
+                @Html.ActionLink(
+                    "Delete",
+                    "DeleteContinent",
+                    "Continent",
+                    new
+                    {
+                        continent = item.Code
+                       //Model.AddNewComment.DisplayCaptcha
+                    },
+                    new { @class = "buttonDelete"}
+                  )
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

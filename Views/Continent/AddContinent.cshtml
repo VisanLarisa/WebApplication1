@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "AddContinent Page";
+}
+<h2>Complete the fields</h2>
+@*<form>
+        <input type="text" id="code" name="code"><br>
+        <input type="text" id="name" name="name">
+    </form>*@
+
+@using (Html.BeginForm("FinishContinent", "Continent"))
+{
+    <label for="code">Code:</label>
+    <br>
+    <input type="text" name="code" /><a> (mandatory; max. 3 characters)</a>
+    <br>
+    <label for="name">Name:</label>
+    <br>
+    <input type="text" name="name" /><a> (mandatory)</a>
+    <br>
+    <br />
+    <input type="submit" value="ADD" class = "buttonAdd">
+}

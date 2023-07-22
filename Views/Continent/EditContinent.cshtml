@@ -1,0 +1,22 @@
+﻿@model Continent
+@{
+    ViewData["Title"] = "EditContinent Page";
+}
+<h2>Complete the fields</h2>
+
+
+@using (Html.BeginForm("FinishUpdateContinent", "Continent"))
+{
+    <input type="text" name="oldCode" value="@Model.Code" hidden/>
+
+    <label for="code">Code:</label>
+    <br>
+    <input type="text" name="code" value="@Model.Code" /><a> (mandatory; max. 3 characters)</a>
+    <br>
+    <label for="name">Name:</label>
+    <br>
+    <input type="text" name="name" value="@Model.Name" /><a> (mandatory)</a>
+    <br>
+    <br />
+    <input type="submit" value="UPDATE" class = "buttonAdd">
+}

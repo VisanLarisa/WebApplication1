@@ -1,0 +1,80 @@
+﻿@model EditHelper<string, Country>
+@{
+    ViewData["Title"] = "EditCountry Page";
+    List<SelectListItem> l1 = new List<SelectListItem>();
+
+    foreach (string c in Model.fkList)
+        l1.Add(new SelectListItem() { Text = c });
+
+}
+<h2>Complete the fields</h2>
+
+
+@using (Html.BeginForm("FinishUpdateCountry", "Country"))
+{
+    <input type="text" name="oldCode" value="@Model.editableObj.Code" hidden />
+
+    <label for="Code">Code:</label>
+    <br>
+    <input type="text" name="Code" value="@Model.editableObj.Code" /><a> (read-only)</a>
+    <br>
+    <label for="Name">Name:</label>
+    <br>
+    <input type="text" name="Name" value="@Model.editableObj.Name" /><a> (read-only)</a>
+    <br>
+    <label for="Region">Region:</label>
+    <br>
+    <input type="text" name="Region" value="@Model.editableObj.Region" /><a> (mandatory)</a>
+    <br>
+    <label for="SurfaceArea">SurfaceArea:</label>
+    <br>
+    <input type="text" name="SurfaceArea" value="@Model.editableObj.SurfaceArea" /><a> (mandatory)</a>
+    <br>
+    <label for="IdepYear">IdepYear:</label>
+    <br>
+    <input type="text" name="IdepYear" value="@Model.editableObj.IndepYear" />
+    <br>
+    <label for="Population">Population:</label>
+    <br>
+    <input type="text" name="Population" value="@Model.editableObj.Population" /><a> (mandatory)</a>
+    <br>
+    <label for="LifeExpectency">LifeExpectency:</label>
+    <br>
+    <input type="text" name="LifeExpectency" value="@Model.editableObj.LifeExpectency" /><a> (under 100)</a>
+    <br>
+    <label for="GNP">GNP:</label>
+    <br>
+    <input type="text" name="GNP" value="@Model.editableObj.GNP" />
+    <br>
+    <label for="GNPOId">GNPOId:</label>
+    <br>
+    <input type="text" name="GNPOId" value="@Model.editableObj.GNPOId" />
+    <br>
+    <label for="LocalName">LocalName:</label>
+    <br>
+    <input type="text" name="LocalName" value="@Model.editableObj.LocalName" /><a> (mandatory)</a>
+    <br>
+    <label for="GovernmentForm">GovernmentForm:</label>
+    <br>
+    <input type="text" name="GovernmentForm" value="@Model.editableObj.GovernmentForm" /><a> (mandatory)</a>
+    <br>
+    <label for="HeadOfState">HeadOfState:</label>
+    <br>
+    <input type="text" name="HeadOfState" value="@Model.editableObj.HeadOfState" />
+    <br>
+    <label for="Capital">Capital:</label>
+    <br>
+    <input type="text" name="Capital" value="@Model.editableObj.Capital" />
+    <br>
+    <label for="Code2">Code2:</label>
+    <br>
+    <input type="text" name="Code2" value="@Model.editableObj.Code2" /><a> (mandatory, max. 2 characters)</a>
+    <br>
+    <label for="ContinentCode">ContinentCode:</label>
+    <br>
+    @Html.DropDownList("Continents", l1, @Model.editableObj.ContinentCode)<a> (mandatory)</a>
+    <br>
+    <br />
+    <input type="submit" value="UPDATE" class = "buttonAdd">
+
+}

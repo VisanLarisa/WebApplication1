@@ -1,0 +1,38 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "AddCityt Page";
+    List<SelectListItem> l1 = new List<SelectListItem>();
+
+    foreach (string c in Model)
+        l1.Add(new SelectListItem() { Text = c });
+
+}
+<h2>Complete the fields</h2>
+
+
+@using (Html.BeginForm("FinishCity", "Home"))
+{
+   @* <label for="Id">Id:</label>
+    <br>
+    <input type="text" name="Id" /><a> (mandatory)</a>*@
+    <br>
+    <label for="Name">Name:</label>
+    <br>
+    <input type="text" name="Name" /><a> (mandatory)</a>
+    <br>
+    <label for="CountryCode">CountryCode:</label>
+    <br>
+    @Html.DropDownList("CountryCode", l1, "");<a> (mandatory)</a>
+    <br>
+    <label for="District">District:</label>
+    <br>
+    <input type="text" name="District" /><a> (mandatory)</a>
+    <br>
+    <label for="Population">Population:</label>
+    <br>
+    <input type="text" name="Population" /><a> (mandatory)</a>
+    <br>
+
+    <br />
+    <input type="submit" value="ADD" class = "buttonAdd">
+}
